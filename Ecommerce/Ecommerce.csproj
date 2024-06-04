@@ -47,6 +47,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\App General\Item\ChosenItem.cs" />
+    <Compile Include="src\App General\Item\Item.cs" />
+    <Compile Include="src\App General\Item\OrderedItem.cs" />
+    <Compile Include="src\App General\Miscellaneous\MiscFunctionality.cs" />
+    <Compile Include="src\App General\Miscellaneous\MiscQueries.cs" />
+    <Compile Include="src\App General\Miscellaneous\Val.cs" />
+    <Compile Include="src\App General\Tab Visitation\FirstVisitation.cs" />
+    <Compile Include="src\App General\Tab Visitation\TabVisitation.cs" />
+    <Compile Include="src\Main\Db.cs" />
+    <Compile Include="src\Main\Db.designer.cs">
+      <DependentUpon>Db.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\Main\Program.cs" />
+    <Compile Include="src\Main\TheForm.cs" />
+    <Compile Include="src\Main\TheForm.Designer.cs">
+      <DependentUpon>TheForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\Tab Specific\Queries\AccountQueries.cs" />
+    <Compile Include="src\Tab Specific\Queries\PlaceOrderQueries.cs" />
+    <Compile Include="src\Tab Specific\Tabs\Account\AccountFunctionality.cs" />
+    <Compile Include="src\Tab Specific\Tabs\Account\AccountTheForm.cs" />
+    <Compile Include="src\Tab Specific\Tabs\Account\IAccountData.cs" />
+    <Compile Include="src\Tab Specific\Tabs\Finance\FinanceFunctionality.cs" />
+    <Compile Include="src\Tab Specific\Tabs\Finance\FinanceTab.cs" />
+    <Compile Include="src\Tab Specific\Tabs\Finance\IFinanceData.cs" />
+    <Compile Include="src\Tab Specific\Tabs\PlaceOrder\IPlaceOrderData.cs" />
+    <Compile Include="src\Tab Specific\Tabs\PlaceOrder\PlaceOrderFunctionality.cs" />
+    <Compile Include="src\Tab Specific\Tabs\PlaceOrder\PlaceOrderTab.cs" />
+    <Compile Include="src\Tab Specific\Tabs\PurchaseHistory\IPurchaseHistoryData.cs" />
+    <Compile Include="src\Tab Specific\Tabs\PurchaseHistory\PurchaseHistory.cs" />
+    <Compile Include="src\Tab Specific\Tabs\PurchaseHistory\PurchaseHistoryFunctionality.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -56,6 +87,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="src\Main\TheForm.resx">
+      <DependentUpon>TheForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -65,6 +99,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="src\Main\Db.dbml" />
+    <None Include="src\Main\Db.dbml.layout" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
