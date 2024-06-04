@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F6F9024C-D37B-44CD-A502-CDBF1C0174B8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Ecommerce</RootNamespace>
+    <RootNamespace>ProjectNS</RootNamespace>
     <AssemblyName>Ecommerce</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,28 +56,39 @@
     <Compile Include="src\App General\Miscellaneous\Val.cs" />
     <Compile Include="src\App General\Tab Visitation\FirstVisitation.cs" />
     <Compile Include="src\App General\Tab Visitation\TabVisitation.cs" />
-    <Compile Include="src\Main\Db.cs" />
     <Compile Include="src\Main\Db.designer.cs">
-      <DependentUpon>Db.cs</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Db.dbml</DependentUpon>
     </Compile>
     <Compile Include="src\Main\Program.cs" />
-    <Compile Include="src\Main\TheForm.cs" />
+    <Compile Include="src\Main\TheForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\Main\TheForm.Designer.cs">
       <DependentUpon>TheForm.cs</DependentUpon>
     </Compile>
     <Compile Include="src\Tab Specific\Queries\AccountQueries.cs" />
     <Compile Include="src\Tab Specific\Queries\PlaceOrderQueries.cs" />
     <Compile Include="src\Tab Specific\Tabs\Account\AccountFunctionality.cs" />
-    <Compile Include="src\Tab Specific\Tabs\Account\AccountTheForm.cs" />
+    <Compile Include="src\Tab Specific\Tabs\Account\AccountTheForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\Tab Specific\Tabs\Account\IAccountData.cs" />
     <Compile Include="src\Tab Specific\Tabs\Finance\FinanceFunctionality.cs" />
-    <Compile Include="src\Tab Specific\Tabs\Finance\FinanceTab.cs" />
+    <Compile Include="src\Tab Specific\Tabs\Finance\FinanceTab.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\Tab Specific\Tabs\Finance\IFinanceData.cs" />
     <Compile Include="src\Tab Specific\Tabs\PlaceOrder\IPlaceOrderData.cs" />
     <Compile Include="src\Tab Specific\Tabs\PlaceOrder\PlaceOrderFunctionality.cs" />
-    <Compile Include="src\Tab Specific\Tabs\PlaceOrder\PlaceOrderTab.cs" />
+    <Compile Include="src\Tab Specific\Tabs\PlaceOrder\PlaceOrderTab.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\Tab Specific\Tabs\PurchaseHistory\IPurchaseHistoryData.cs" />
-    <Compile Include="src\Tab Specific\Tabs\PurchaseHistory\PurchaseHistory.cs" />
+    <Compile Include="src\Tab Specific\Tabs\PurchaseHistory\PurchaseHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\Tab Specific\Tabs\PurchaseHistory\PurchaseHistoryFunctionality.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -86,6 +98,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="src\Main\TheForm.resx">
       <DependentUpon>TheForm.cs</DependentUpon>
@@ -99,11 +112,20 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="src\Main\Db.dbml" />
-    <None Include="src\Main\Db.dbml.layout" />
+    <None Include="src\Main\Db.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Db.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="src\Main\Db.dbml.layout">
+      <DependentUpon>Db.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

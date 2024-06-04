@@ -36,9 +36,9 @@ namespace ProjectNS
     partial void InsertEarbud(Earbud instance);
     partial void UpdateEarbud(Earbud instance);
     partial void DeleteEarbud(Earbud instance);
-    partial void InsertEarbuds_categories(Earbuds_categories instance);
-    partial void UpdateEarbuds_categories(Earbuds_categories instance);
-    partial void DeleteEarbuds_categories(Earbuds_categories instance);
+    partial void InsertEarbudsCategory(EarbudsCategory instance);
+    partial void UpdateEarbudsCategory(EarbudsCategory instance);
+    partial void DeleteEarbudsCategory(EarbudsCategory instance);
     partial void InsertOrder(Order instance);
     partial void UpdateOrder(Order instance);
     partial void DeleteOrder(Order instance);
@@ -48,16 +48,16 @@ namespace ProjectNS
     partial void InsertTea(Tea instance);
     partial void UpdateTea(Tea instance);
     partial void DeleteTea(Tea instance);
-    partial void InsertTea_categories(Tea_categories instance);
-    partial void UpdateTea_categories(Tea_categories instance);
-    partial void DeleteTea_categories(Tea_categories instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertTeaCategory(TeaCategory instance);
+    partial void UpdateTeaCategory(TeaCategory instance);
+    partial void DeleteTeaCategory(TeaCategory instance);
     #endregion
 		
 		public DbDataContext() : 
-				base(global::ProjectNS.Properties.Settings.Default.ecommerce_siteConnectionString, mappingSource)
+				base(global::ProjectNS.Properties.Settings.Default.ecommerce_siteConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -102,11 +102,11 @@ namespace ProjectNS
 			}
 		}
 		
-		public System.Data.Linq.Table<Earbuds_categories> Earbuds_categories
+		public System.Data.Linq.Table<EarbudsCategory> EarbudsCategories
 		{
 			get
 			{
-				return this.GetTable<Earbuds_categories>();
+				return this.GetTable<EarbudsCategory>();
 			}
 		}
 		
@@ -134,19 +134,19 @@ namespace ProjectNS
 			}
 		}
 		
-		public System.Data.Linq.Table<Tea_categories> Tea_categories
-		{
-			get
-			{
-				return this.GetTable<Tea_categories>();
-			}
-		}
-		
 		public System.Data.Linq.Table<User> Users
 		{
 			get
 			{
 				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TeaCategory> TeaCategories
+		{
+			get
+			{
+				return this.GetTable<TeaCategory>();
 			}
 		}
 	}
@@ -161,9 +161,9 @@ namespace ProjectNS
 		
 		private string _name;
 		
-		private EntitySet<Earbuds_categories> _earbuds_categories;
+		private EntitySet<EarbudsCategory> _EarbudsCategories;
 		
-		private EntitySet<Tea_categories> _tea_categories;
+		private EntitySet<TeaCategory> _TeaCategories;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -177,8 +177,8 @@ namespace ProjectNS
 		
 		public Category()
 		{
-			this._earbuds_categories = new EntitySet<Earbuds_categories>(new Action<Earbuds_categories>(this.attach_earbuds_categories), new Action<Earbuds_categories>(this.detach_earbuds_categories));
-			this._tea_categories = new EntitySet<Tea_categories>(new Action<Tea_categories>(this.attach_tea_categories), new Action<Tea_categories>(this.detach_tea_categories));
+			this._EarbudsCategories = new EntitySet<EarbudsCategory>(new Action<EarbudsCategory>(this.attach_EarbudsCategories), new Action<EarbudsCategory>(this.detach_EarbudsCategories));
+			this._TeaCategories = new EntitySet<TeaCategory>(new Action<TeaCategory>(this.attach_TeaCategories), new Action<TeaCategory>(this.detach_TeaCategories));
 			OnCreated();
 		}
 		
@@ -222,29 +222,29 @@ namespace ProjectNS
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="category_earbuds_category", Storage="_earbuds_categories", ThisKey="pk", OtherKey="category_pk")]
-		public EntitySet<Earbuds_categories> Earbuds_categories
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="category_earbuds_category", Storage="_EarbudsCategories", ThisKey="pk", OtherKey="category_pk")]
+		public EntitySet<EarbudsCategory> EarbudsCategories
 		{
 			get
 			{
-				return this._earbuds_categories;
+				return this._EarbudsCategories;
 			}
 			set
 			{
-				this._earbuds_categories.Assign(value);
+				this._EarbudsCategories.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="category_tea_category", Storage="_tea_categories", ThisKey="pk", OtherKey="category_pk")]
-		public EntitySet<Tea_categories> Tea_categories
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="category_tea_category", Storage="_TeaCategories", ThisKey="pk", OtherKey="category_pk")]
+		public EntitySet<TeaCategory> TeaCategories
 		{
 			get
 			{
-				return this._tea_categories;
+				return this._TeaCategories;
 			}
 			set
 			{
-				this._tea_categories.Assign(value);
+				this._TeaCategories.Assign(value);
 			}
 		}
 		
@@ -268,25 +268,25 @@ namespace ProjectNS
 			}
 		}
 		
-		private void attach_earbuds_categories(Earbuds_categories entity)
+		private void attach_EarbudsCategories(EarbudsCategory entity)
 		{
 			this.SendPropertyChanging();
 			entity.Category = this;
 		}
 		
-		private void detach_earbuds_categories(Earbuds_categories entity)
+		private void detach_EarbudsCategories(EarbudsCategory entity)
 		{
 			this.SendPropertyChanging();
 			entity.Category = null;
 		}
 		
-		private void attach_tea_categories(Tea_categories entity)
+		private void attach_TeaCategories(TeaCategory entity)
 		{
 			this.SendPropertyChanging();
 			entity.Category = this;
 		}
 		
-		private void detach_tea_categories(Tea_categories entity)
+		private void detach_TeaCategories(TeaCategory entity)
 		{
 			this.SendPropertyChanging();
 			entity.Category = null;
@@ -309,7 +309,7 @@ namespace ProjectNS
 		
 		private bool _for_sale;
 		
-		private EntitySet<Earbuds_categories> _earbuds_categories;
+		private EntitySet<EarbudsCategory> _EarbudsCategories;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -329,7 +329,7 @@ namespace ProjectNS
 		
 		public Earbud()
 		{
-			this._earbuds_categories = new EntitySet<Earbuds_categories>(new Action<Earbuds_categories>(this.attach_earbuds_categories), new Action<Earbuds_categories>(this.detach_earbuds_categories));
+			this._EarbudsCategories = new EntitySet<EarbudsCategory>(new Action<EarbudsCategory>(this.attach_EarbudsCategories), new Action<EarbudsCategory>(this.detach_EarbudsCategories));
 			OnCreated();
 		}
 		
@@ -433,16 +433,16 @@ namespace ProjectNS
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="earbud_earbuds_category", Storage="_earbuds_categories", ThisKey="pk", OtherKey="earbuds_pk")]
-		public EntitySet<Earbuds_categories> Earbuds_categories
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="earbud_earbuds_category", Storage="_EarbudsCategories", ThisKey="pk", OtherKey="earbuds_pk")]
+		public EntitySet<EarbudsCategory> EarbudsCategories
 		{
 			get
 			{
-				return this._earbuds_categories;
+				return this._EarbudsCategories;
 			}
 			set
 			{
-				this._earbuds_categories.Assign(value);
+				this._EarbudsCategories.Assign(value);
 			}
 		}
 		
@@ -466,13 +466,13 @@ namespace ProjectNS
 			}
 		}
 		
-		private void attach_earbuds_categories(Earbuds_categories entity)
+		private void attach_EarbudsCategories(EarbudsCategory entity)
 		{
 			this.SendPropertyChanging();
 			entity.Earbud = this;
 		}
 		
-		private void detach_earbuds_categories(Earbuds_categories entity)
+		private void detach_EarbudsCategories(EarbudsCategory entity)
 		{
 			this.SendPropertyChanging();
 			entity.Earbud = null;
@@ -480,7 +480,7 @@ namespace ProjectNS
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.earbuds_categories")]
-	public partial class Earbuds_categories : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class EarbudsCategory : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -489,9 +489,9 @@ namespace ProjectNS
 		
 		private int _category_pk;
 		
-		private EntityRef<Category> _category;
+		private EntityRef<Category> _Category;
 		
-		private EntityRef<Earbud> _earbud;
+		private EntityRef<Earbud> _Earbud;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -503,10 +503,10 @@ namespace ProjectNS
     partial void Oncategory_pkChanged();
     #endregion
 		
-		public Earbuds_categories()
+		public EarbudsCategory()
 		{
-			this._category = default(EntityRef<Category>);
-			this._earbud = default(EntityRef<Earbud>);
+			this._Category = default(EntityRef<Category>);
+			this._Earbud = default(EntityRef<Earbud>);
 			OnCreated();
 		}
 		
@@ -521,7 +521,7 @@ namespace ProjectNS
 			{
 				if ((this._earbuds_pk != value))
 				{
-					if (this._earbud.HasLoadedOrAssignedValue)
+					if (this._Earbud.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -545,7 +545,7 @@ namespace ProjectNS
 			{
 				if ((this._category_pk != value))
 				{
-					if (this._category.HasLoadedOrAssignedValue)
+					if (this._Category.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -558,29 +558,29 @@ namespace ProjectNS
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="category_earbuds_category", Storage="_category", ThisKey="category_pk", OtherKey="pk", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="category_earbuds_category", Storage="_Category", ThisKey="category_pk", OtherKey="pk", IsForeignKey=true)]
 		public Category Category
 		{
 			get
 			{
-				return this._category.Entity;
+				return this._Category.Entity;
 			}
 			set
 			{
-				Category previousValue = this._category.Entity;
+				Category previousValue = this._Category.Entity;
 				if (((previousValue != value) 
-							|| (this._category.HasLoadedOrAssignedValue == false)))
+							|| (this._Category.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._category.Entity = null;
-						previousValue.Earbuds_categories.Remove(this);
+						this._Category.Entity = null;
+						previousValue.EarbudsCategories.Remove(this);
 					}
-					this._category.Entity = value;
+					this._Category.Entity = value;
 					if ((value != null))
 					{
-						value.Earbuds_categories.Add(this);
+						value.EarbudsCategories.Add(this);
 						this._category_pk = value.pk;
 					}
 					else
@@ -592,29 +592,29 @@ namespace ProjectNS
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="earbud_earbuds_category", Storage="_earbud", ThisKey="earbuds_pk", OtherKey="pk", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="earbud_earbuds_category", Storage="_Earbud", ThisKey="earbuds_pk", OtherKey="pk", IsForeignKey=true)]
 		public Earbud Earbud
 		{
 			get
 			{
-				return this._earbud.Entity;
+				return this._Earbud.Entity;
 			}
 			set
 			{
-				Earbud previousValue = this._earbud.Entity;
+				Earbud previousValue = this._Earbud.Entity;
 				if (((previousValue != value) 
-							|| (this._earbud.HasLoadedOrAssignedValue == false)))
+							|| (this._Earbud.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._earbud.Entity = null;
-						previousValue.Earbuds_categories.Remove(this);
+						this._Earbud.Entity = null;
+						previousValue.EarbudsCategories.Remove(this);
 					}
-					this._earbud.Entity = value;
+					this._Earbud.Entity = value;
 					if ((value != null))
 					{
-						value.Earbuds_categories.Add(this);
+						value.EarbudsCategories.Add(this);
 						this._earbuds_pk = value.pk;
 					}
 					else
@@ -659,9 +659,9 @@ namespace ProjectNS
 		
 		private System.DateTime _date;
 		
-		private EntitySet<Purchase> _purchases;
+		private EntitySet<Purchase> _Purchases;
 		
-		private EntityRef<User> _user;
+		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -677,8 +677,8 @@ namespace ProjectNS
 		
 		public Order()
 		{
-			this._purchases = new EntitySet<Purchase>(new Action<Purchase>(this.attach_purchases), new Action<Purchase>(this.detach_purchases));
-			this._user = default(EntityRef<User>);
+			this._Purchases = new EntitySet<Purchase>(new Action<Purchase>(this.attach_Purchases), new Action<Purchase>(this.detach_Purchases));
+			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
@@ -713,7 +713,7 @@ namespace ProjectNS
 			{
 				if ((this._user_id != value))
 				{
-					if (this._user.HasLoadedOrAssignedValue)
+					if (this._User.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -746,39 +746,39 @@ namespace ProjectNS
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="order_purchase", Storage="_purchases", ThisKey="pk", OtherKey="order_pk")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="order_purchase", Storage="_Purchases", ThisKey="pk", OtherKey="order_pk")]
 		public EntitySet<Purchase> Purchases
 		{
 			get
 			{
-				return this._purchases;
+				return this._Purchases;
 			}
 			set
 			{
-				this._purchases.Assign(value);
+				this._Purchases.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="user_order", Storage="_user", ThisKey="user_id", OtherKey="id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="user_order", Storage="_User", ThisKey="user_id", OtherKey="id", IsForeignKey=true)]
 		public User User
 		{
 			get
 			{
-				return this._user.Entity;
+				return this._User.Entity;
 			}
 			set
 			{
-				User previousValue = this._user.Entity;
+				User previousValue = this._User.Entity;
 				if (((previousValue != value) 
-							|| (this._user.HasLoadedOrAssignedValue == false)))
+							|| (this._User.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._user.Entity = null;
+						this._User.Entity = null;
 						previousValue.Orders.Remove(this);
 					}
-					this._user.Entity = value;
+					this._User.Entity = value;
 					if ((value != null))
 					{
 						value.Orders.Add(this);
@@ -813,13 +813,13 @@ namespace ProjectNS
 			}
 		}
 		
-		private void attach_purchases(Purchase entity)
+		private void attach_Purchases(Purchase entity)
 		{
 			this.SendPropertyChanging();
 			entity.Order = this;
 		}
 		
-		private void detach_purchases(Purchase entity)
+		private void detach_Purchases(Purchase entity)
 		{
 			this.SendPropertyChanging();
 			entity.Order = null;
@@ -842,7 +842,7 @@ namespace ProjectNS
 		
 		private int _quantity;
 		
-		private EntityRef<Order> _order;
+		private EntityRef<Order> _Order;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -862,7 +862,7 @@ namespace ProjectNS
 		
 		public Purchase()
 		{
-			this._order = default(EntityRef<Order>);
+			this._Order = default(EntityRef<Order>);
 			OnCreated();
 		}
 		
@@ -897,7 +897,7 @@ namespace ProjectNS
 			{
 				if ((this._order_pk != value))
 				{
-					if (this._order.HasLoadedOrAssignedValue)
+					if (this._Order.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -970,26 +970,26 @@ namespace ProjectNS
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="order_purchase", Storage="_order", ThisKey="order_pk", OtherKey="pk", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="order_purchase", Storage="_Order", ThisKey="order_pk", OtherKey="pk", IsForeignKey=true)]
 		public Order Order
 		{
 			get
 			{
-				return this._order.Entity;
+				return this._Order.Entity;
 			}
 			set
 			{
-				Order previousValue = this._order.Entity;
+				Order previousValue = this._Order.Entity;
 				if (((previousValue != value) 
-							|| (this._order.HasLoadedOrAssignedValue == false)))
+							|| (this._Order.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._order.Entity = null;
+						this._Order.Entity = null;
 						previousValue.Purchases.Remove(this);
 					}
-					this._order.Entity = value;
+					this._Order.Entity = value;
 					if ((value != null))
 					{
 						value.Purchases.Add(this);
@@ -1041,7 +1041,7 @@ namespace ProjectNS
 		
 		private bool _for_sale;
 		
-		private EntitySet<Tea_categories> _tea_categories;
+		private EntitySet<TeaCategory> _TeaCategories;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1061,7 +1061,7 @@ namespace ProjectNS
 		
 		public Tea()
 		{
-			this._tea_categories = new EntitySet<Tea_categories>(new Action<Tea_categories>(this.attach_tea_categories), new Action<Tea_categories>(this.detach_tea_categories));
+			this._TeaCategories = new EntitySet<TeaCategory>(new Action<TeaCategory>(this.attach_TeaCategories), new Action<TeaCategory>(this.detach_TeaCategories));
 			OnCreated();
 		}
 		
@@ -1165,16 +1165,16 @@ namespace ProjectNS
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tea_tea_category", Storage="_tea_categories", ThisKey="pk", OtherKey="tea_pk")]
-		public EntitySet<Tea_categories> Tea_categories
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tea_tea_category", Storage="_TeaCategories", ThisKey="pk", OtherKey="tea_pk")]
+		public EntitySet<TeaCategory> TeaCategories
 		{
 			get
 			{
-				return this._tea_categories;
+				return this._TeaCategories;
 			}
 			set
 			{
-				this._tea_categories.Assign(value);
+				this._TeaCategories.Assign(value);
 			}
 		}
 		
@@ -1198,184 +1198,16 @@ namespace ProjectNS
 			}
 		}
 		
-		private void attach_tea_categories(Tea_categories entity)
+		private void attach_TeaCategories(TeaCategory entity)
 		{
 			this.SendPropertyChanging();
 			entity.Tea = this;
 		}
 		
-		private void detach_tea_categories(Tea_categories entity)
+		private void detach_TeaCategories(TeaCategory entity)
 		{
 			this.SendPropertyChanging();
 			entity.Tea = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tea_categories")]
-	public partial class Tea_categories : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _tea_pk;
-		
-		private int _category_pk;
-		
-		private EntityRef<Category> _category;
-		
-		private EntityRef<Tea> _tea;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Ontea_pkChanging(int value);
-    partial void Ontea_pkChanged();
-    partial void Oncategory_pkChanging(int value);
-    partial void Oncategory_pkChanged();
-    #endregion
-		
-		public Tea_categories()
-		{
-			this._category = default(EntityRef<Category>);
-			this._tea = default(EntityRef<Tea>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tea_pk", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int tea_pk
-		{
-			get
-			{
-				return this._tea_pk;
-			}
-			set
-			{
-				if ((this._tea_pk != value))
-				{
-					if (this._tea.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Ontea_pkChanging(value);
-					this.SendPropertyChanging();
-					this._tea_pk = value;
-					this.SendPropertyChanged("tea_pk");
-					this.Ontea_pkChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_category_pk", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int category_pk
-		{
-			get
-			{
-				return this._category_pk;
-			}
-			set
-			{
-				if ((this._category_pk != value))
-				{
-					if (this._category.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Oncategory_pkChanging(value);
-					this.SendPropertyChanging();
-					this._category_pk = value;
-					this.SendPropertyChanged("category_pk");
-					this.Oncategory_pkChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="category_tea_category", Storage="_category", ThisKey="category_pk", OtherKey="pk", IsForeignKey=true)]
-		public Category Category
-		{
-			get
-			{
-				return this._category.Entity;
-			}
-			set
-			{
-				Category previousValue = this._category.Entity;
-				if (((previousValue != value) 
-							|| (this._category.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._category.Entity = null;
-						previousValue.Tea_categories.Remove(this);
-					}
-					this._category.Entity = value;
-					if ((value != null))
-					{
-						value.Tea_categories.Add(this);
-						this._category_pk = value.pk;
-					}
-					else
-					{
-						this._category_pk = default(int);
-					}
-					this.SendPropertyChanged("Category");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tea_tea_category", Storage="_tea", ThisKey="tea_pk", OtherKey="pk", IsForeignKey=true)]
-		public Tea Tea
-		{
-			get
-			{
-				return this._tea.Entity;
-			}
-			set
-			{
-				Tea previousValue = this._tea.Entity;
-				if (((previousValue != value) 
-							|| (this._tea.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tea.Entity = null;
-						previousValue.Tea_categories.Remove(this);
-					}
-					this._tea.Entity = value;
-					if ((value != null))
-					{
-						value.Tea_categories.Add(this);
-						this._tea_pk = value.pk;
-					}
-					else
-					{
-						this._tea_pk = default(int);
-					}
-					this.SendPropertyChanged("Tea");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
@@ -1393,7 +1225,7 @@ namespace ProjectNS
 		
 		private decimal _balance;
 		
-		private EntitySet<Order> _orders;
+		private EntitySet<Order> _Orders;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1411,7 +1243,7 @@ namespace ProjectNS
 		
 		public User()
 		{
-			this._orders = new EntitySet<Order>(new Action<Order>(this.attach_orders), new Action<Order>(this.detach_orders));
+			this._Orders = new EntitySet<Order>(new Action<Order>(this.attach_Orders), new Action<Order>(this.detach_Orders));
 			OnCreated();
 		}
 		
@@ -1495,16 +1327,16 @@ namespace ProjectNS
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="user_order", Storage="_orders", ThisKey="id", OtherKey="user_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="user_order", Storage="_Orders", ThisKey="id", OtherKey="user_id")]
 		public EntitySet<Order> Orders
 		{
 			get
 			{
-				return this._orders;
+				return this._Orders;
 			}
 			set
 			{
-				this._orders.Assign(value);
+				this._Orders.Assign(value);
 			}
 		}
 		
@@ -1528,16 +1360,184 @@ namespace ProjectNS
 			}
 		}
 		
-		private void attach_orders(Order entity)
+		private void attach_Orders(Order entity)
 		{
 			this.SendPropertyChanging();
 			entity.User = this;
 		}
 		
-		private void detach_orders(Order entity)
+		private void detach_Orders(Order entity)
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tea_categories")]
+	public partial class TeaCategory : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _tea_pk;
+		
+		private int _category_pk;
+		
+		private EntityRef<Category> _Category;
+		
+		private EntityRef<Tea> _Tea;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Ontea_pkChanging(int value);
+    partial void Ontea_pkChanged();
+    partial void Oncategory_pkChanging(int value);
+    partial void Oncategory_pkChanged();
+    #endregion
+		
+		public TeaCategory()
+		{
+			this._Category = default(EntityRef<Category>);
+			this._Tea = default(EntityRef<Tea>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tea_pk", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int tea_pk
+		{
+			get
+			{
+				return this._tea_pk;
+			}
+			set
+			{
+				if ((this._tea_pk != value))
+				{
+					if (this._Tea.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Ontea_pkChanging(value);
+					this.SendPropertyChanging();
+					this._tea_pk = value;
+					this.SendPropertyChanged("tea_pk");
+					this.Ontea_pkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_category_pk", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int category_pk
+		{
+			get
+			{
+				return this._category_pk;
+			}
+			set
+			{
+				if ((this._category_pk != value))
+				{
+					if (this._Category.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Oncategory_pkChanging(value);
+					this.SendPropertyChanging();
+					this._category_pk = value;
+					this.SendPropertyChanged("category_pk");
+					this.Oncategory_pkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="category_tea_category", Storage="_Category", ThisKey="category_pk", OtherKey="pk", IsForeignKey=true)]
+		public Category Category
+		{
+			get
+			{
+				return this._Category.Entity;
+			}
+			set
+			{
+				Category previousValue = this._Category.Entity;
+				if (((previousValue != value) 
+							|| (this._Category.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Category.Entity = null;
+						previousValue.TeaCategories.Remove(this);
+					}
+					this._Category.Entity = value;
+					if ((value != null))
+					{
+						value.TeaCategories.Add(this);
+						this._category_pk = value.pk;
+					}
+					else
+					{
+						this._category_pk = default(int);
+					}
+					this.SendPropertyChanged("Category");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tea_tea_category", Storage="_Tea", ThisKey="tea_pk", OtherKey="pk", IsForeignKey=true)]
+		public Tea Tea
+		{
+			get
+			{
+				return this._Tea.Entity;
+			}
+			set
+			{
+				Tea previousValue = this._Tea.Entity;
+				if (((previousValue != value) 
+							|| (this._Tea.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tea.Entity = null;
+						previousValue.TeaCategories.Remove(this);
+					}
+					this._Tea.Entity = value;
+					if ((value != null))
+					{
+						value.TeaCategories.Add(this);
+						this._tea_pk = value.pk;
+					}
+					else
+					{
+						this._tea_pk = default(int);
+					}
+					this.SendPropertyChanged("Tea");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

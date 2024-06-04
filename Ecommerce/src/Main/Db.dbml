@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ecommerce_site" Class="DbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-6KE5GGAV;Initial Catalog=ecommerce_site;Integrated Security=True" SettingsObjectName="ProjectNS.Properties.Settings" SettingsPropertyName="ecommerce_siteConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-6KE5GGAV;Initial Catalog=ecommerce_site;Integrated Security=True;Encrypt=False" SettingsObjectName="ProjectNS.Properties.Settings" SettingsPropertyName="ecommerce_siteConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.category" Member="Categories">
     <Type Name="Category">
       <Column Name="pk" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
-      <Association Name="category_earbuds_category" Member="Earbuds_categories" Storage="_earbuds_categories" ThisKey="pk" OtherKey="category_pk" Type="Earbuds_categories" />
-      <Association Name="category_tea_category" Member="Tea_categories" Storage="_tea_categories" ThisKey="pk" OtherKey="category_pk" Type="Tea_categories" />
+      <Association Name="category_earbuds_category" Member="EarbudsCategories" ThisKey="pk" OtherKey="category_pk" Type="EarbudsCategory" />
+      <Association Name="category_tea_category" Member="TeaCategories" ThisKey="pk" OtherKey="category_pk" Type="TeaCategory" />
     </Type>
   </Table>
   <Table Name="dbo.earbuds" Member="Earbuds">
@@ -15,15 +15,15 @@
       <Column Name="price" Type="System.Decimal" DbType="Decimal(5,2) NOT NULL" CanBeNull="false" />
       <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="for_sale" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="earbud_earbuds_category" Member="Earbuds_categories" Storage="_earbuds_categories" ThisKey="pk" OtherKey="earbuds_pk" Type="Earbuds_categories" />
+      <Association Name="earbud_earbuds_category" Member="EarbudsCategories" ThisKey="pk" OtherKey="earbuds_pk" Type="EarbudsCategory" />
     </Type>
   </Table>
-  <Table Name="dbo.earbuds_categories" Member="Earbuds_categories">
-    <Type Name="Earbuds_categories">
+  <Table Name="dbo.earbuds_categories" Member="EarbudsCategories">
+    <Type Name="EarbudsCategory">
       <Column Name="earbuds_pk" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="category_pk" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="category_earbuds_category" Member="Category" Storage="_category" ThisKey="category_pk" OtherKey="pk" Type="Category" IsForeignKey="true" />
-      <Association Name="earbud_earbuds_category" Member="Earbud" Storage="_earbud" ThisKey="earbuds_pk" OtherKey="pk" Type="Earbud" IsForeignKey="true" />
+      <Association Name="category_earbuds_category" Member="Category" ThisKey="category_pk" OtherKey="pk" Type="Category" IsForeignKey="true" />
+      <Association Name="earbud_earbuds_category" Member="Earbud" ThisKey="earbuds_pk" OtherKey="pk" Type="Earbud" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.[order]" Member="Orders">
@@ -31,8 +31,8 @@
       <Column Name="pk" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Association Name="order_purchase" Member="Purchases" Storage="_purchases" ThisKey="pk" OtherKey="order_pk" Type="Purchase" />
-      <Association Name="user_order" Member="User" Storage="_user" ThisKey="user_id" OtherKey="id" Type="User" IsForeignKey="true" />
+      <Association Name="order_purchase" Member="Purchases" ThisKey="pk" OtherKey="order_pk" Type="Purchase" />
+      <Association Name="user_order" Member="User" ThisKey="user_id" OtherKey="id" Type="User" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.purchase" Member="Purchases">
@@ -42,7 +42,7 @@
       <Column Name="item_pk" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="table_of_item_pk" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
       <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="order_purchase" Member="Order" Storage="_order" ThisKey="order_pk" OtherKey="pk" Type="Order" IsForeignKey="true" />
+      <Association Name="order_purchase" Member="Order" ThisKey="order_pk" OtherKey="pk" Type="Order" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tea" Member="Teas">
@@ -52,15 +52,7 @@
       <Column Name="price" Type="System.Decimal" DbType="Decimal(5,2) NOT NULL" CanBeNull="false" />
       <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="for_sale" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="tea_tea_category" Member="Tea_categories" Storage="_tea_categories" ThisKey="pk" OtherKey="tea_pk" Type="Tea_categories" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tea_categories" Member="Tea_categories">
-    <Type Name="Tea_categories">
-      <Column Name="tea_pk" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="category_pk" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="category_tea_category" Member="Category" Storage="_category" ThisKey="category_pk" OtherKey="pk" Type="Category" IsForeignKey="true" />
-      <Association Name="tea_tea_category" Member="Tea" Storage="_tea" ThisKey="tea_pk" OtherKey="pk" Type="Tea" IsForeignKey="true" />
+      <Association Name="tea_tea_category" Member="TeaCategories" ThisKey="pk" OtherKey="tea_pk" Type="TeaCategory" />
     </Type>
   </Table>
   <Table Name="dbo.[user]" Member="Users">
@@ -69,7 +61,15 @@
       <Column Name="username" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="password" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="balance" Type="System.Decimal" DbType="Decimal(6,2) NOT NULL" CanBeNull="false" />
-      <Association Name="user_order" Member="Orders" Storage="_orders" ThisKey="id" OtherKey="user_id" Type="Order" />
+      <Association Name="user_order" Member="Orders" ThisKey="id" OtherKey="user_id" Type="Order" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tea_categories" Member="TeaCategories">
+    <Type Name="TeaCategory">
+      <Column Name="tea_pk" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="category_pk" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="category_tea_category" Member="Category" ThisKey="category_pk" OtherKey="pk" Type="Category" IsForeignKey="true" />
+      <Association Name="tea_tea_category" Member="Tea" ThisKey="tea_pk" OtherKey="pk" Type="Tea" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
