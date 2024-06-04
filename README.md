@@ -1,6 +1,7 @@
 Namespaces end with "NS" so other types can have the same name and not
 cause a conflict error that would occur without the NS.
-
+<br>
+<br>
 Event handlers call a method to handle it asynchronously (unless it isn't
 something that would block the thread for a long time), and this method calls
 an async method which only starts a task, and this method calls the a non async
