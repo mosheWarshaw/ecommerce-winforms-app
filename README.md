@@ -1,4 +1,4 @@
-A basic eccommerce desktop app, providing account login, creating orders, paying balances, viewing (and filtering the view) of your purchase history.
+An ecommerce desktop app, providing account login, creating orders, paying balances, viewing (and filtering the view) of your purchase history.
 <br>
 
 <h1>Convention and structure:</h1>
