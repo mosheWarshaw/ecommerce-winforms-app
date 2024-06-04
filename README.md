@@ -9,7 +9,7 @@ Each tab has a folder in the Tabs folder that contains the event handler file, a
 The Functionality classes are all named functionality, but their file naes include the tab so you can distinguish files when multiple are open at the same time.<br>
 Each Functionality file has passed into its constructor a Data file that allows them to access/alter only the parts of the form that they should be able to.<br>
 Naming convention:<br>
-&nsbp;&nsbp;&nsbp;&nsbp;	interface: ITabNameData
+&nbsp;&nbsp;&nbsp;&nbsp;	interface: ITabNameData
 &nsbp;&nsbp;&nsbp;&nsbp;	class: TabNameData
 The class is created in the event handler class of the tab so it has access to the controls of the form.<br>
 The event handler passes just the data the Functionality class needs, and the Functionality class generally just passes the values to the Queries that are needed.
