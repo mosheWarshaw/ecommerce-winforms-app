@@ -1,3 +1,6 @@
+A basic eccommerce desktop app, providing account login, creating orders, paying balances, viewing (and filtering the view) of your purchase history.
+<br>
+
 <h1>Convention and structure:</h1>
 Namespaces end with "NS" so other types can have the same name and not cause a conflict error that would occur without the NS.
 <br>
