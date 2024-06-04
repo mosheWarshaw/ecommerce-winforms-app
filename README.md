@@ -1,4 +1,4 @@
-<b>Convention and structure:</b>
+<h1>Convention and structure:</h1>
 Namespaces end with "NS" so other types can have the same name and not cause a conflict error that would occur without the NS.
 <br>
 <br>
